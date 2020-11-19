@@ -1,0 +1,57 @@
+
+
+function checkDate(dato){
+    let details = {};
+    details.LengthValid = textLength(dato);
+    details.DotsValid = dots(dato);
+    details.YearValid = validYear(dato);
+    details.MonthValid = validMonth(dato);
+    details.DayValid = validDay(dato);
+    details.IsleapYear = isLeapYear(dato);
+    details.AllTestsPassed = (details.LengthValid && details.DotsValid && details.YearValid && details.MonthValid && details.DayValid);
+    console.log(details);
+    return details.AllTestsPassed;             
+};
+
+function textLength(dato){
+
+    return dato.length == 10;
+}
+
+function dots(dato){
+   return dato.charAt(2) == "." && dato.charAt(5) =='.';
+}
+
+function validYear(dato){
+    let yearlength = dato.length - 6;
+    let year = dato.substr(6,yearlength);
+    return year.length === 4 && year >= '0000' && year <= '9999';
+}
+function validMonth(dato){
+    let month = dato.substr (3,2);
+    return month.length === 2 && month > '00' && month <= '12';
+}
+
+function validDay(dato){
+    let day = dato.substr(0,2);
+    let month = dato.substr (3,2);
+    let year = dato.substr(6,4);
+    let mnd30 = month === '04' && month === '06' && month === '09' && month === '11';
+    isLeapYear(year);
+    if (day.length === 2 && day > '00' && day <= '28') {
+     return true;
+    } else if (isLeapYear(year) && month == '02' && day == '29') {
+        return true;
+    } else if (mnd30 && day =='30'){
+        return true;
+    } else if (!mnd30 && month != '02' && day >'00' &&  day <= '31'){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function isLeapYear(year){
+    return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Test Suite</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.12.0.css">
+    <script src="https://code.jquery.com/qunit/qunit-2.12.0.js"></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script>
+        QUnit.test("CheckDateValidation", function(assert) {
+            let actual = checkDate("12.11.2020");
+            let expected = true;
+            assert.equal(actual, expected);
+            actual = checkDate("1.14.2020");
+            expected = false;
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("CheckLengthValidation", function(assert) {
+            let actual = textLength("12.11.2020");
+            let expected = true;
+            assert.equal(actual, expected);
+            actual = textLength("1.1.2020");
+            expected = false;
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("CheckDotsPositionValidation", function(assert) {
+            let actual = dots("12.11.2020");
+            let expected = true;
+            assert.equal(actual, expected);
+            actual = dots("12,11,2020");
+            expected = false;
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("CheckDayValidation", function(assert) {
+            let actual = validDay("12.11.2020");
+            let expected = true;
+            assert.equal(actual, expected);
+            actual = validDay("65.11.2020");
+            expected = false;
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("CheckMonthValidation", function(assert) {
+            let actual = validMonth("12.11.2020");
+            let expected = true;
+            assert.equal(actual, expected);
+            actual = validMonth("12.00.2020");
+            expected = false;
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("CheckYearValidation", function(assert) {
+            let actual = validYear("12.11.2020");
+            let expected = true;
+            assert.equal(actual, expected);
+            actual = validYear("12.11.20200");
+            expected = false;
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("CheckLeapYear", function(assert) {
+            let actual = isLeapYear("2020");
+            let expected = true;
+            assert.equal(actual, expected);
+            actual = isLeapYear("2019");
+            expected = false;
+            assert.equal(actual, expected);
+        });
+    </script>
+
+</body>
+</html>

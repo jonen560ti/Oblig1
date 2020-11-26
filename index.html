@@ -49,12 +49,11 @@ function validDay(dato){
     let month = dato.substr (3,2);
     let year = dato.substr(6,4);
     let mnd30 = month === '04' && month === '06' && month === '09' && month === '11';
-    isLeapYear(year);
     if (day.length === 2 && day > '00' && day <= '28') {
      return true;
     } else if (isLeapYear(year) && month == '02' && day == '29') {
         return true;
-    } else if (mnd30 && day =='30'){
+    } else if (mnd30 && day > '00' && day <= '30'){
         return true;
     } else if (!mnd30 && month != '02' && day >'00' &&  day <= '31'){
         return true;

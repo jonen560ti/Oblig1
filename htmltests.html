@@ -18,7 +18,7 @@
             assert.equal(actual, expected);
             actual = checkDate("1.14.2020");
             expected = false;
-            assert.equal(actual, expected);
+            assert.equal(actual, expected, "Denne skal være false");
         });
 
         QUnit.test("CheckLengthValidation", function(assert) {
